@@ -11,7 +11,7 @@ const userSchema=new Schema(
             trim:true,
             index:true,
         },
-        username:{
+        email:{
             type:String,
             required:true,
             unique:true,
@@ -65,7 +65,7 @@ userSchema.methods.genrateAccessToken=function(){
             _id:this._id,
             email:this.email,
             username:this.username,
-            fullName:this.fullName,
+            fullName:this.fullName
 
         },
         process.env.ACCESS_TOKEN_SECRET,
@@ -78,9 +78,6 @@ userSchema.methods.genrateRefreshToken=function(){
     return jwt.sign(
         {
             _id:this._id,
-            email:this.email,
-            username:this.username,
-            fullName:this.fullName,
 
         },
         process.env.REFRESH_TOKEN_SECRET,
